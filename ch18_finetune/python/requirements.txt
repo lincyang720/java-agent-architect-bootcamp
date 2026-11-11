@@ -1,0 +1,17 @@
+# 第18章「模型微调与推理优化」Python 参考实现依赖
+# 版本区间为合理下限，实际以各库最新稳定版为准。
+# 安装：pip install -r requirements.txt（建议在 CUDA 环境下，GPU 训练/推理才有效）
+
+# 底座与训练框架
+transformers>=4.44.0      # AutoModelForCausalLM / BitsAndBytesConfig / Trainer
+peft>=0.12.0              # LoraConfig / get_peft_model / PeftModel.merge_and_unload
+datasets>=2.20.0          # load_dataset，加载 JSONL 训练数据
+bitsandbytes>=0.43.0      # 4-bit/8-bit 量化（QLoRA / INT8 推理）
+accelerate>=0.33.0        # device_map="auto" 多设备调度
+torch>=2.3.0              # 深度学习底座（需匹配本机 CUDA 版本）
+
+# 高吞吐推理
+vllm>=0.6.0               # LLM / SamplingParams / OpenAI 兼容 api_server
+
+# 可选：4-bit 部署侧量化（lesson03 AWQ 示例，需时再装）
+# autoawq>=0.2.0

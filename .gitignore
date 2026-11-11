@@ -1,0 +1,24 @@
+# Maven / 编译产物
+target/
+*.class
+*.jar
+*.war
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 本地密钥（切勿提交）
+.env
+*.local
+
+# OS
+.DS_Store

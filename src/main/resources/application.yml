@@ -1,0 +1,41 @@
+# 课程配套代码配置示例
+# 说明：直接在命令行 export 环境变量即可，无需把密钥写进文件。
+#   export OPENAI_API_KEY=sk-xxx
+#   export DASHSCOPE_API_KEY=sk-xxx
+# 下面仅为结构示意，Spring AI / LangChain4j 起步依赖会自动读取对应环境变量。
+
+spring:
+  application:
+    name: java-agent-architect-course
+  ai:
+    openai:
+      # Spring AI 会自动读取 OPENAI_API_KEY 环境变量
+      api-key: ${OPENAI_API_KEY:placeholder}
+      base-url: https://api.openai.com/v1
+      chat:
+        options:
+          model: gpt-4o-mini
+          temperature: 0.7
+    dashscope:
+      # Spring AI Alibaba 会读取 DASHSCOPE_API_KEY
+      api-key: ${DASHSCOPE_API_KEY:placeholder}
+      chat:
+        options:
+          model: qwen-plus
+
+# PgVector（第6章记忆 / 第7章RAG 可选）
+# spring:
+#   datasource:
+#     url: jdbc:postgresql://localhost:5432/agent_course
+#     username: postgres
+#     password: postgres
+
+# 可观测性（第10章）：把链路导出到本地 OTLP Collector（可选）
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
